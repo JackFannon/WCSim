@@ -20,6 +20,7 @@ public:
 private:
   WCSimPhysicsListFactory* thisWCSimPhysicsListFactory;
   G4String ValidListsString;
+  G4String ExtraLists;
 
   G4UIdirectory*      WCSimDir;
   G4UIcmdWithAString* physListCmd;
