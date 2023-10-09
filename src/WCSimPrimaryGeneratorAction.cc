@@ -894,6 +894,39 @@ void WCSimPrimaryGeneratorAction::GeneratePrimaries(G4Event *anEvent) {
 
     } else if (useIBDEvt) {
         // J. Fannon: Generate IBD events from an input spectrum
+        WCSimIBDGen *IBDGen = new WCSimIBDGen(myDetector);
+
+        // Event variables
+        G4ThreeVector nu_dir;
+        G4LorentzVector neutrino;
+        G4LorentzVector positron;
+        G4LorentzVector neutron;
+
+        // Read spectrum
+        IBDGen->ReadSpectrum(ibd_spectrum);
+
+        // Generate event
+        IBDGen->GenEvent(nu_dir, neutrino, positron, neutron);
+
+        // Generate random isotopic position inside detector
+        G4ThreeVector vtx = IBDGen->GenRandomPosition();
+
+        particleGun->SetParticlePosition(vtx);
+
+        particleGun->SetParticleDefinition(particleTable->FindParticle("neutron"));
+        particleGun->SetParticleEnergy(neutron.getT());
+        particleGun->SetParticleMomentumDirection(neutron.getV());
+        particleGun->SetParticleTime(0.);
+
+        particleGun->GeneratePrimaryVertex(anEvent);
+
+        particleGun->SetParticlePosition(vtx);
+        particleGun->SetParticleDefinition(particleTable->FindParticle("e+"));
+        particleGun->SetParticleEnergy(positron.getT());
+        particleGun->SetParticleMomentumDirection(positron.getV());
+        particleGun->SetParticleTime(0.);
+
+        particleGun->GeneratePrimaryVertex(anEvent);
 
     } else if (useDataTableEvt) {
         // Setup local variables to store the data table values
