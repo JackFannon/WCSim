@@ -90,6 +90,11 @@ WCSimPrimaryGeneratorMessenger::WCSimPrimaryGeneratorMessenger(WCSimPrimaryGener
     injectorWavelengthCmd->SetParameterName("injector_wavelength", true);
     injectorWavelengthCmd->SetDefaultValue(435.);
 
+    ibdSpectrumCmd = new G4UIcmdWithAString("/mygen/ibd_spectrum", this);
+    ibdSpectrumCmd->SetGuidance("Select the IBD spectrum file.");
+    ibdSpectrumCmd->SetParameterName("ibd_spectrum", true);
+    ibdSpectrumCmd->SetDefaultValue("data/nakazato.txt");
+
     isotopeCmd = new G4UIcmdWithAString("/mygen/isotope", this);
     isotopeCmd->SetGuidance("Select properties of radioactive isotope");
     isotopeCmd->SetGuidance("[usage] /mygen/isotope ISOTOPE LOCATION ACTIVITY");
