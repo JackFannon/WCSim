@@ -93,7 +93,7 @@ WCSimPrimaryGeneratorMessenger::WCSimPrimaryGeneratorMessenger(WCSimPrimaryGener
     ibdSpectrumCmd = new G4UIcmdWithAString("/mygen/ibd_spectrum", this);
     ibdSpectrumCmd->SetGuidance("Select the IBD spectrum file.");
     ibdSpectrumCmd->SetParameterName("ibd_spectrum", true);
-    ibdSpectrumCmd->SetDefaultValue("data/nakazato.txt");
+    ibdSpectrumCmd->SetDefaultValue("data/nakazato_nh_min.txt");
 
     isotopeCmd = new G4UIcmdWithAString("/mygen/isotope", this);
     isotopeCmd->SetGuidance("Select properties of radioactive isotope");
