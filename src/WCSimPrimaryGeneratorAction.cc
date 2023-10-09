@@ -10,6 +10,7 @@
 #include "G4ThreeVector.hh"
 #include "Randomize.hh"
 #include "WCSimDetectorConstruction.hh"
+#include "WCSimIBDGen.hh"
 #include "WCSimPrimaryGeneratorMessenger.hh"
 #include "globals.hh"
 #include <G4Types.hh>
@@ -905,21 +906,21 @@ void WCSimPrimaryGeneratorAction::GeneratePrimaries(G4Event *anEvent) {
         // Read spectrum
         IBDGen->ReadSpectrum(ibd_spectrum);
 
-        // Generate event
+        // Generate event. GenEvent fills the Lorentz vectors with the direction and energy of the particles
         IBDGen->GenEvent(nu_dir, neutrino, positron, neutron);
 
         // Generate random isotopic position inside detector
         G4ThreeVector vtx = IBDGen->GenRandomPosition();
 
+        // Generate neutron
         particleGun->SetParticlePosition(vtx);
-
         particleGun->SetParticleDefinition(particleTable->FindParticle("neutron"));
         particleGun->SetParticleEnergy(neutron.getT());
         particleGun->SetParticleMomentumDirection(neutron.getV());
         particleGun->SetParticleTime(0.);
 
+        // Generate positron
         particleGun->GeneratePrimaryVertex(anEvent);
-
         particleGun->SetParticlePosition(vtx);
         particleGun->SetParticleDefinition(particleTable->FindParticle("e+"));
         particleGun->SetParticleEnergy(positron.getT());
