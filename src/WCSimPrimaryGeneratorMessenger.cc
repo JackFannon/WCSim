@@ -323,6 +323,10 @@ void WCSimPrimaryGeneratorMessenger::SetNewValue(G4UIcommand *command, G4String 
         myAction->OpenCosmicsFile(newValue);
         G4cout << "Input cosmics data file set to " << newValue << G4endl;
     }
+    if (command == ibdSpectrumCmd) {
+        myAction->SetIBDSpectrum(newValue);
+        G4cout << "IBD spectrum file set to " << newValue << G4endl;
+    }
     if (command == isotopeCmd) {
         IsotopeCommand(newValue);
     }

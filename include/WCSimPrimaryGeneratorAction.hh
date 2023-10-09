@@ -111,6 +111,9 @@ class WCSimPrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction {
     G4String cosmicsFileName = "data/MuonFlux-HyperK-ThetaPhi.dat";
     G4bool GenerateVertexInRock;
 
+    // Variables for IBD generator
+    G4String ibd_spectrum;
+
     // Variables for Radioactive and Radon generators
     std::vector<struct radioactive_source> radioactive_sources;
     G4double radioactive_time_window;
@@ -258,6 +261,9 @@ class WCSimPrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction {
 
     inline void SetRadioactiveEvtGenerator(G4bool choice) { useRadioactiveEvt = choice; }
     inline G4bool IsUsingRadioactiveEvtGenerator() { return useRadioactiveEvt; }
+
+    inline void SetIBDSpectrum(G4String choice) { ibd_spectrum = choice; }
+    inline G4String GetIBDSpectrum() { return ibd_spectrum; }
 
     inline void SetRadioactiveTimeWindow(G4double choice) { radioactive_time_window = choice; }
     inline G4double GetRadioactiveTimeWindow() { return radioactive_time_window; }
