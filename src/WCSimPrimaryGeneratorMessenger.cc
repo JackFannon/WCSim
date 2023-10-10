@@ -18,7 +18,7 @@ WCSimPrimaryGeneratorMessenger::WCSimPrimaryGeneratorMessenger(WCSimPrimaryGener
                         "rootracker, radon, injector, gamma-conversion");
     genCmd->SetParameterName("generator", true);
     genCmd->SetDefaultValue("muline");
-    genCmd->SetCandidates("muline gun laser gps datatable cosmics radioactive rootracker "
+    genCmd->SetCandidates("muline gun laser gps ibd datatable cosmics radioactive rootracker "
                           "radon injector, gamma-conversion");
 
     fileNameCmd = new G4UIcmdWithAString("/mygen/vecfile", this);
