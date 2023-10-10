@@ -217,7 +217,7 @@ double WCSimIBDGen::CrossSection(double e_nu, double cos_theta) {
 double WCSimIBDGen::PositronEnergy(double e_nu, double cos_theta) {
     // Returns positron energy with first order corrections
     // Zero'th order approximation of positron quantities - infinite nucleon mass
-    double e0 = e_nu - CLHEP::neutron_mass_c2 + CLHEP::electron_mass_c2;
+    double e0 = e_nu - (CLHEP::neutron_mass_c2 - CLHEP::proton_mass_c2);
     double p0 = sqrt(e0 * e0 - CLHEP::electron_mass_c2 * CLHEP::electron_mass_c2);
     double v0 = p0 / e0;
 
