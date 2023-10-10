@@ -88,22 +88,15 @@ void WCSimIBDGen::GenEvent(G4ThreeVector &nu_dir, G4LorentzVector &neutrino, G4L
     double theta_nu = acos(2.0 * G4UniformRand() - 1.0);
     double phi_nu = 2.0 * G4UniformRand() * CLHEP::pi;
     nu_dir.setRThetaPhi(1.0, theta_nu, phi_nu);
-    std::cout << "nu dir: " << nu_dir << std::endl;
 
     // Pick energy of neutrino and relative direction of positron
     float e_nu, cos_theta;
     GenInteraction(e_nu, cos_theta);
 
-    // Print e_nu
-    std::cout << "e_nu: " << e_nu << std::endl;
-    // cos theta
-    std::cout << "cos theta: " << cos_theta << std::endl;
-
     // First order correction to positron quantities
     // for finite nucleon mass
     double e1 = PositronEnergy(e_nu, cos_theta);
-    // Print positron energy
-    std::cout << "positron energy: " << e1 << std::endl;
+
     double p1 = sqrt(e1 * e1 - CLHEP::electron_mass_c2 * CLHEP::electron_mass_c2);
 
     // Compute neutrino 4-momentum
